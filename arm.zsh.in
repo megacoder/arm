@@ -1,8 +1,20 @@
 #!/bin/zsh
-export	PATH=<SPREFIX>/local/arm-linux/bin:${PATH}
+export	SPATH=<SPREFIX>/local/arm-linux
 export	PKG_CONFIG_PATH=<SPREFIX>/local/lib/pkgconfig
 export	CC=gcc
 export	RPROMPT="(arm)"
+
+while getopts c c
+do
+	case "$c" in
+	c)	SPATH=<SPREFIX>/local;;
+	*)	echo "${USAGE}" >&2; exit 1;;
+	esac
+done
+
+shift $(expr ${OPTIND} - 1)
+
+export PATH=${SPATH}/bin:${PATH}
 
 if [ $# -gt 0 ]; then
 	"$@"

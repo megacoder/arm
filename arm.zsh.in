@@ -1,0 +1,11 @@
+#!/bin/zsh
+export	PATH=<SPREFIX>/local/arm-linux/bin:${PATH}
+export	PKG_CONFIG_PATH=<SPREFIX>/local/lib/pkgconfig
+export	CC=gcc
+export	RPROMPT="(arm)"
+
+if [ $# -gt 0 ]; then
+	"$@"
+else
+	exec ${SHELL:-/bin/sh}
+fi
